@@ -2,13 +2,13 @@ echo -e "\e[36m>>>>>>> Configuring NodeJs repos <<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
 echo -e "\e[36m>>>>>>> install NodeJs  <<<<<<<<\e[0m"
-yum istall nodejs -y
+yum install nodejs -y
 
 echo -e "\e[36m>>>>>>> Add Application user <<<<<<<<\e[0m"
 useradd roboshop
 
 echo -e "\e[36m>>>>>>> Create application Directory <<<<<<<<\e[0m"
-rm-rf /app
+rm -rf /app
 mkdir /app
 
 echo -e "\e[36m>>>>>>> Download App content <<<<<<<<\e[0m"
