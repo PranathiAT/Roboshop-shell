@@ -4,7 +4,7 @@ source ${script_path}/common.sh
 
 
 component=user
-func_nodejs()
+func_nodejs
 
 
 echo -e "\e[36m>>>>>>> Copy mongodb repo<<<<<<<<\e[0m"
