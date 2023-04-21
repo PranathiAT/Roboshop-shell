@@ -8,14 +8,16 @@ print_head()
 
 schema_setup()
 {
-  echo -e "\e[36m>>>>>>> Copy mongodb repo<<<<<<<<\e[0m"
+  if [ "$schema_setup" == "mongo" ]; then
+  print_head " Copy mongodb repo"
   cp $script_path/mongo.repo /etc/yum.repos.d/mongo.repo
 
-  echo -e "\e[36m>>>>>>> Install mongodb client<<<<<<<<\e[0m"
+  print_head " Install mongodb client"
   yum install mongodb-org-shell -y
 
-  echo -e "\e[36m>>>>>>> Load schema  <<<<<<<<\e[0m"
+  print_head "Load schema"
   mongo --host mongodb-dev.pdevops.online </app/schema/${component}.js
+  fi
 }
 func_nodejs()
 {
@@ -51,6 +53,6 @@ func_nodejs()
   systemctl enable ${component}
   systemctl start ${component}
 
-
+  schema_setup
 
 }
