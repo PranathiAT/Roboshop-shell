@@ -1,7 +1,7 @@
 rabbitmq_appuser_password=$1
 
 
-if[-z "$rabbitmq_appuser_password"];then
+if [ -z "$rabbitmq_appuser_password" ];then
   echo Input Rabbitmq app user password missing
   exit
 fi
