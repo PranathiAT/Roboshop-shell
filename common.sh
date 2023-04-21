@@ -2,7 +2,7 @@ app_user=roboshop
 
 print_head()
 {
-  echo -e "\e[36m>>>>>>> $* <<<<<<<<\e[0m"
+  echo -e "\e[31m>>>>>>> $* <<<<<<<<\e[0m"
 }
 func_nodejs()
 {
