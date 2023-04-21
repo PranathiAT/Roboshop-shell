@@ -1,36 +1,39 @@
 app_user=roboshop
 
-
+print_head()
+{
+  echo -e "\e[36m>>>>>>> $* <<<<<<<<\e[0m"
+}
 func_nodejs()
 {
 
-  echo -e "\e[36m>>>>>>> download configuration repos <<<<<<<<\e[0m"
+  print_head "download configuration repos"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-  echo -e "\e[36m>>>>>>> Install nodejs<<<<<<<<\e[0m"
+  print_head "Install nodejs"
   yum install nodejs -y
 
-  echo -e "\e[36m>>>>>>> Add application user<<<<<<<<\e[0m"
+  print_head "Add application user"
   useradd ${app_user}
 
-  echo -e "\e[36m>>>>>>> Create app directory<<<<<<<<\e[0m"
+  print_head " Create app directory"
   rm -rf /app
   mkdir /app
 
-  echo -e "\e[36m>>>>>>> Download app content <<<<<<<<\e[0m"
+  print_head "Download app content"
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
   cd /app
 
-  echo -e "\e[36m>>>>>>> UnZip App Content<<<<<<<<\e[0m"
+  print_head " UnZip App Content"
   unzip /tmp/${component}.zip
 
-  echo -e "\e[36m>>>>>>> Install nodejs dependencies <<<<<<<<\e[0m"
+  print_head "Install nodejs dependencies"
   npm install
 
-  echo -e "\e[36m>>>>>>> copy service file<<<<<<<<\e[0m"
+   print_head "copy service file"
   cp $script_path/${component}.service /etc/systemd/system/${component}.service
 
-  echo -e "\e[36m>>>>>start service file<<<<<<<<\e[0m"
+    print_head "start" ${component} "file"
   systemctl daemon-reload
   systemctl enable ${component}
   systemctl start ${component}
