@@ -62,7 +62,8 @@ func_systemd_setup()
 func_app_prereq()
 {
   func_print_head "Add application user"
-    useradd ${app_user} >/tmp/roboshop.log
+    useradd ${app_user} &>/tmp/roboshop.log
+    func_status_check $?
 
     func_print_head " Create app directory"
     rm -rf /app
