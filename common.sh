@@ -61,6 +61,7 @@ func_systemd_setup()
     func_status_check $?
 
 }
+
 func_app_prereq()
 {
   func_print_head "Add application user"
