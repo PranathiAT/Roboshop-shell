@@ -1,34 +1,17 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
+component=dispatch
 
+func_print_head "Install golang"
+yum install golang -y &>>$log_file
+func_status_check $?
 
-echo -e "\e[36m>>>>>>> Install golang<<<<<<<<\e[0m"
-yum install golang -y
-echo -e "\e[36m>>>>>>> Add application user<<<<<<<<\e[0m"
-useradd ${app_user}
+func_app_prereq
 
-echo -e "\e[36m>>>>>>> Create app directory<<<<<<<<\e[0m"
-rm -rf /app
-mkdir /app
+func_print_head "Install dependencies"
+go mod init dispatch &>>$log_file
+go get &>>$log_file
+go build &>>$log_file
 
-echo -e "\e[36m>>>>>>> Download app content<<<<<<<<\e[0m"
-curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
-cd /app
-
-echo -e "\e[36m>>>>>>> Extract app content<<<<<<<<\e[0m"
-unzip /tmp/dispatch.zip
-
-
-echo -e "\e[36m>>>>>>> Install dependencies<<<<<<<<\e[0m"
-go mod init dispatch
-go get
-go build
-
-echo -e "\e[36m>>>>>>> Copy service file<<<<<<<<\e[0m"
-cp $script_path/dispatch.service /etc/systemd/system/dispatch.service
-
-echo -e "\e[36m>>>>>>> start dispatch service<<<<<<<<\e[0m"
-systemctl daemon-reload
-systemctl enable dispatch
-systemctl start dispatch
+func_systemd_setup
