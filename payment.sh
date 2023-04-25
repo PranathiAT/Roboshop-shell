@@ -3,7 +3,6 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 rabbitmq_appuser_password=$1
 component=payment
-func_python
 
 
 if [ -z "$rabbitmq_appuser_password" ];then
@@ -11,3 +10,4 @@ if [ -z "$rabbitmq_appuser_password" ];then
   exit
 fi
 
+func_python
