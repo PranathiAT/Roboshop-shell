@@ -142,6 +142,7 @@ func_python()
   func_status_check $?
 
   func_print_head "Update passwords in system service file"
-  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" $script_path/payment.service
+  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" $script_path/payment.service &>>$log_file
+  func_status_check $?
   func_systemd_setup
 }
