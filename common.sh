@@ -90,8 +90,7 @@ func_app_prereq()
 func_nodejs()
 {
 
-  func_print_head
- "download configuration repos"
+  func_print_head "download configuration repos"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
 
   func_print_head "Install nodejs"
