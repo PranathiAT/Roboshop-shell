@@ -22,4 +22,4 @@ systemctl start mysqld
 
 echo -e "\e[36m>>>>>>> set mysql password<<<<<<<<\e[0m"
 mysql_secure_installation --set-root-pass ${mysql_root_password}
-mysql -uroot -pRoboShop@1
+mysql -uroot -p${mysql_root_password}
