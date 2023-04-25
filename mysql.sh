@@ -27,5 +27,5 @@ func_status_check $?
 
 echo -e "\e[36m>>>>>>> set mysql password<<<<<<<<\e[0m"
 mysql_secure_installation --set-root-pass ${mysql_root_password}
-mysql -uroot -p${mysql_root_password}
+#mysql -uroot -p${mysql_root_password}
 func_status_check $?
