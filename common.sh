@@ -54,7 +54,7 @@ func_systemd_setup()
     cp $script_path/${component}.service /etc/systemd/system/${component}.service &>>$log_file
     func_status_check $?
 
-    func_print_head "start" ${component} "file"
+    func_print_head "start" ${component} "service"
     systemctl daemon-reload
     systemctl enable ${component} &>>$log_file
     systemctl start ${component} &>>$log_file
