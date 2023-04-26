@@ -34,4 +34,5 @@ func_print_head "Add user with password"
 rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
 #fi
+
 func_status_check $?
