@@ -10,6 +10,6 @@ if [ -z "$rabbitmq_appuser_password" ];then
   exit
 fi
 
-func_app_prereq
+
 func_python
-func_systemd_setup
+
