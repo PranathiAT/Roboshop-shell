@@ -28,9 +28,9 @@ systemctl start rabbitmq-server &>>$log_file
 func_status_check $?
 
 func_print_head "Add user with password"
-user = $(rabbitmqctl list_users -q |grep roboshop | awk 'print $1')
+user = $(rabbitmqctl list_users -q |grep roboshop | awk '{print $1}')
 echo "$user"
-if [user != 'roboshop'];then
+if [$user != 'roboshop'];then
 rabbitmqctl add_user roboshop ${rabbitmq_appuser_password} &>>$log_file
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
 fi
