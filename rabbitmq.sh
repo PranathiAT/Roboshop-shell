@@ -18,6 +18,7 @@ func_print_head "set up rabbitmq repos"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
 func_status_check $?
 
+
 #func_print_head "install erlang"
 #yum install erlang  -y &>>$log_file
 #func_status_check $?
