@@ -24,7 +24,7 @@ func_status_check $?
 #func_status_check $?
 
 func_print_head "install rabbitmq"
-yum install rabbitmq-server  -y &>>$log_file
+yum install rabbitmq-server -y &>>$log_file
 func_status_check $?
 
 func_print_head "start rabbitmq service"
